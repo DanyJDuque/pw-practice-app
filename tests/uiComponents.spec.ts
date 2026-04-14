@@ -4,13 +4,17 @@ test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:4200/')
 })
 
-test.describe('From Layouts page', async () => {
+test.describe.only('From Layouts page', async () => {
+    test.describe.configure({retries: 2}) // esta configuración se aplicará a todos los tests dentro de este describe, en este caso a los tests de radio buttons y input fields
     test.beforeEach(async ({ page }) => {
         await page.getByText('Forms').click()
         await page.getByText('Form Layouts').click()
     })
 
-    test('input fields', async ({ page }) => {
+    test('input fields', async ({ page }, testInfo) => {
+        if(testInfo.retry) {
+            console.log(`Retrying test: ${testInfo.title}, attempt: ${testInfo.retry}`)
+        }
         const usingTheGridEmailInput = page.locator('nb-card', { 'hasText': 'Using the Grid' }).getByRole('textbox', { name: 'Email' })
         await usingTheGridEmailInput.fill('test@test.com')
         await usingTheGridEmailInput.clear()
@@ -18,7 +22,7 @@ test.describe('From Layouts page', async () => {
 
         //generic assertions
         const inputValue = await usingTheGridEmailInput.inputValue()
-        expect(inputValue).toEqual('test2@test.com')
+        expect(inputValue).toEqual('test2@test.com1')
 
         //locator assertions
         await expect(usingTheGridEmailInput).toHaveValue('test2@test.com')

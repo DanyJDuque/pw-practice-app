@@ -36,3 +36,45 @@ creamos las constantes con los valores deseados.
     const randomFullName = faker.person.fullName()
     // const randomEmail = `${randomFullName}${faker.number.int(1000)}@test.com`.toLowerCase().replace(/\s/g, '')
     const randomEmail = `${randomFullName.replace(' ','')}${faker.number.int(1000)}@test.com`
+
+
+63. Test Retries
+
+Retry OFF
+
+tenemos dos ecenarios, cuando el worker ejecuta todas las pruebas, y estas pasan,
+y conado una de las pruebas falla, se genera otro worker donde se ejcuta el resto de las pruebas.
+
+===Worker #1===  ===Worker #1===
+
+Test 1 - PASS    Test 1 - PASS      
+Test 2 - PASS    Test 2 - FAIL 
+Test 3 - PASS 
+                 ===Worker #2=== 
+                  Test 3 - PASS 
+
+
+Retry ON
+
+===Worker #1===
+
+Test 1 - PASS    
+Test 2 - FAIL    
+
+===Worker #2=== 
+Test 2 - PASS 
+Test 3 - PASS 
+
+configuramos los reintentos en el config:
+
+  retries: process.env.CI ? 2 : 1,
+
+o tambien podemos confirgurarlo en el test
+
+  test.describe.configure({retries: 2}) // esta configuración se aplicará a todos los tests dentro de este describe, en este caso a los tests de radio buttons y input fields
+
+el testInfo, muestra las veces que se reintento el test
+    test('input fields', async ({ page }, testInfo) => {
+        if(testInfo.retry) {
+            console.log(`Retrying test: ${testInfo.title}, attempt: ${testInfo.retry}`)
+        }
