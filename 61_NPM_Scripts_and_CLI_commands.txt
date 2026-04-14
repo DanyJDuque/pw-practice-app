@@ -22,3 +22,17 @@ podemos crear otro script
 se usa el && para ejecutar en secuencia
 y un sólo & para ejecutar en paralelo
 
+
+
+62 Test Data Generator
+
+https://www.npmjs.com/package/@faker-js/faker
+
+npm i @faker-js/faker --save-dev --force
+
+importamos la libreria en el test
+import {faker} from '@faker-js/faker'
+creamos las constantes con los valores deseados.
+    const randomFullName = faker.person.fullName()
+    // const randomEmail = `${randomFullName}${faker.number.int(1000)}@test.com`.toLowerCase().replace(/\s/g, '')
+    const randomEmail = `${randomFullName.replace(' ','')}${faker.number.int(1000)}@test.com`
