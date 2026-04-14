@@ -1,0 +1,24 @@
+ npx playwright test usePageObjects.spec.ts --project=chromium
+
+
+ podemos usar dentro del archivo package.json lo siguiente
+
+
+"scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    -- esta línea es la que estamos agregando:
+    "PageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=chromium"
+  }
+
+  y la ejecutamos desde la terminal de la siguiente manera
+
+  npm run PageObjects-chrome
+
+podemos crear otro script
+"PageObjects-webkit": "npx playwright test usePageObjects.spec.ts --project=webkit"
+"PageObjects-all": "npm run PageObjects-chrome && npm run PageObjects-webkit"
+
+se usa el && para ejecutar en secuencia
+y un sólo & para ejecutar en paralelo
+
