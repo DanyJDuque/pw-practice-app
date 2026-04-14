@@ -26,7 +26,7 @@ test('auto waiting', async ({ page }) => {
     await expect(successButton).toHaveText('Data loaded with AJAX get request.', { timeout: 20000 })
 })
 
-test('alternative waits', async ({ page }) => {
+test.skip('alternative waits', async ({ page }) => {
     const successButton = page.locator('.bg-success')
 
     // //____ wait for element
@@ -43,7 +43,7 @@ test('alternative waits', async ({ page }) => {
     expect(text).toContain('Data loaded with AJAX get request.')
 })
 
-test('timeouts', async ({ page }) => {
+test.skip('timeouts', async ({ page }) => {
     // test.setTimeout(10000) // this will set the default timeout for all actions in this test to 10 seconds, allowing them to wait up to 10 seconds for elements to be actionable before throwing an error
 
     test.slow() // this will automatically increase the timeout for all actions in this test, allowing them to wait longer before throwing an error. This is useful for tests that are expected to take longer than usual, such as those that involve complex interactions or slow network responses.

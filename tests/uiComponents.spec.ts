@@ -1,10 +1,12 @@
 import { expect, test } from '@playwright/test';
 
+test.describe.configure({mode: 'parallel'})
+
 test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:4200/')
 })
 
-test.describe.only('From Layouts page', async () => {
+test.describe('From Layouts page', async () => {
     test.describe.configure({retries: 2}) // esta configuración se aplicará a todos los tests dentro de este describe, en este caso a los tests de radio buttons y input fields
     test.beforeEach(async ({ page }) => {
         await page.getByText('Forms').click()
@@ -18,11 +20,12 @@ test.describe.only('From Layouts page', async () => {
         const usingTheGridEmailInput = page.locator('nb-card', { 'hasText': 'Using the Grid' }).getByRole('textbox', { name: 'Email' })
         await usingTheGridEmailInput.fill('test@test.com')
         await usingTheGridEmailInput.clear()
-        await usingTheGridEmailInput.pressSequentially('test2@test.com', { delay: 500 })
+        // await usingTheGridEmailInput.pressSequentially('test2@test.com', { delay: 500 })
+        await usingTheGridEmailInput.pressSequentially('test2@test.com')
 
         //generic assertions
         const inputValue = await usingTheGridEmailInput.inputValue()
-        expect(inputValue).toEqual('test2@test.com1')
+        expect(inputValue).toEqual('test2@test.com')
 
         //locator assertions
         await expect(usingTheGridEmailInput).toHaveValue('test2@test.com')

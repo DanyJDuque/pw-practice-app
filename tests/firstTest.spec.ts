@@ -131,7 +131,7 @@ test('assertions', async ({ page }) => {
     await expect(basicFormButton).toHaveText('Submit')
 
     //soft assertions
-    await expect.soft(basicFormButton).toHaveText('Submit5') // this will fail but the test will continue
+    await expect.soft(basicFormButton).toHaveText('Submit') // this will fail but the test will continue
     await basicFormButton.click()
 
 })

@@ -78,3 +78,18 @@ el testInfo, muestra las veces que se reintento el test
         if(testInfo.retry) {
             console.log(`Retrying test: ${testInfo.title}, attempt: ${testInfo.retry}`)
         }
+
+
+64. Parallel Execution
+
+ fullyParallel: true,
+ workers: process.env.CI ? 1 : undefined,
+
+ si queremos ejecutar un grupo de test en paralelo, usamos:
+
+ test.describe.parallel('From Layouts page', async () => {
+
+
+   o agregar esta configuración al inicio del test 
+   test.describe.configure({mode: 'parallel'})
+    
