@@ -1,9 +1,10 @@
 
 import { test, expect } from '@playwright/test';
-import { time } from 'console';
+
 
 test.beforeEach(async ({ page }, testInfo) => {
-    await page.goto('http://uitestingplayground.com/ajax')
+    // await page.goto('http://uitestingplayground.com/ajax')
+    await page.goto(process.env.URL)
     await page.getByText('Button Triggering AJAX Request').click()
     testInfo.setTimeout(testInfo.timeout + 2000) // this will increase the timeout for this particular test by 2 seconds, allowing it to wait longer for the AJAX request to complete before throwing an error
 })

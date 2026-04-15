@@ -3,7 +3,8 @@ import { expect, test } from '@playwright/test';
 test.describe.configure({mode: 'parallel'})
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4200/')
+    // await page.goto('http://localhost:4200/')
+    await page.goto('/')
 })
 
 test.describe('From Layouts page', async () => {

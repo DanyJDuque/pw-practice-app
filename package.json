@@ -11,7 +11,8 @@
     "start": "ng serve",
     "PageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=chromium",
     "PageObjects-webkit": "npx playwright test usePageObjects.spec.ts --project=webkit",
-    "PageObjects-all": "npm run PageObjects-chrome && npm run PageObjects-webkit"
+    "PageObjects-all": "npm run PageObjects-chrome && npm run PageObjects-webkit",
+    "autoWait-dev": "URL=http://uitestingplayground.com/ajax npx playwright test autoWaiting.spec.ts --project=chromium"
   },
   "dependencies": {
     "@angular/animations": "^14.2.12",
@@ -75,6 +76,7 @@
     "@types/node": "^12.20.55",
     "codelyzer": "^0.0.28",
     "conventional-changelog-cli": "^2.2.2",
+    "dotenv": "^17.4.2",
     "npm-run-all": "4.0.2",
     "rimraf": "2.6.1",
     "stylelint": "^15.6.0",

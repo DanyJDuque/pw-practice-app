@@ -4,7 +4,8 @@ import { faker } from '@faker-js/faker'
 
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4200/')
+    // await page.goto('http://localhost:4200/')
+    await page.goto('/')
 })
 
 test('navigate to form page', async ({ page }) => {
@@ -28,7 +29,8 @@ test('parametrized methods', async ({ page }) => {
 
 
     await pm.navigateTo().formLayoutPage()
-    await pm.onFormLayoutsPage().submitUsingTheGridFormWithCredentialsAndSelectionOption('test@test.com', 'Welcome1', 'Option 1')
+    // await pm.onFormLayoutsPage().submitUsingTheGridFormWithCredentialsAndSelectionOption('test@test.com', 'Welcome1', 'Option 1')
+    await pm.onFormLayoutsPage().submitUsingTheGridFormWithCredentialsAndSelectionOption(process.env.USERNAME, process.env.PASSWORD, 'Option 1')
     await page.screenshot({ path: 'screenshots/formLayoutPage.png' })
     // await pm.onFormLayoutsPage().submitInlineFormNameEmailAndCheckbox('Jane Doe', 'janeDoe@test.com', false)
     const buffer = await page.screenshot()
