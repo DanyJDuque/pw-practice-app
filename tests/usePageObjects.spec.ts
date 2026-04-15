@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 import { PageManager } from '../page-objects/pageManager'
-import {faker} from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
 
 
 test.beforeEach(async ({ page }) => {
@@ -16,7 +16,7 @@ test('navigate to form page', async ({ page }) => {
     await pm.navigateTo().smartTablePage()
     await pm.navigateTo().toastrPage()
     await pm.navigateTo().tooltipPage()
-    
+
 })
 
 test('parametrized methods', async ({ page }) => {
@@ -24,14 +24,18 @@ test('parametrized methods', async ({ page }) => {
 
     const randomFullName = faker.person.fullName()
     // const randomEmail = `${randomFullName}${faker.number.int(1000)}@test.com`.toLowerCase().replace(/\s/g, '')
-    const randomEmail = `${randomFullName.replace(' ','')}${faker.number.int(1000)}@test.com`
+    const randomEmail = `${randomFullName.replace(' ', '')}${faker.number.int(1000)}@test.com`
 
 
     await pm.navigateTo().formLayoutPage()
     await pm.onFormLayoutsPage().submitUsingTheGridFormWithCredentialsAndSelectionOption('test@test.com', 'Welcome1', 'Option 1')
+    await page.screenshot({ path: 'screenshots/formLayoutPage.png' })
     // await pm.onFormLayoutsPage().submitInlineFormNameEmailAndCheckbox('Jane Doe', 'janeDoe@test.com', false)
+    const buffer = await page.screenshot()
+    console.log(buffer.toString('base64'))
     await pm.onFormLayoutsPage().submitInlineFormNameEmailAndCheckbox(randomFullName, randomEmail, false)
-    // await pm.navigateTo().datePickerPage()
-    // await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(200)
-    // await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(5, 10)
+    await page.locator('nb-card', { 'hasText': 'Inline form' }).screenshot({ path: 'screenshots/inlineForm.png' })
+    await pm.navigateTo().datePickerPage()
+    await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(100)
+    await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(5, 10)
 })

@@ -40,6 +40,13 @@ export default defineConfig({
     trace: 'on-first-retry',
     // actionTimeout: 5000, // 5 seconds
     // navigationTimeout: 5000 // 5 seconds
+    video: {
+      mode: 'on',
+      size: {
+        width: 1920,
+        height: 1080
+      }
+    }
   },
 
   /* Configure projects for major browsers */
