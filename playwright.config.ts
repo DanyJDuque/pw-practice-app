@@ -4,8 +4,8 @@ import type { TestOptions } from './test-options'
 require('dotenv').config();
 
 export default defineConfig<TestOptions>({
-  timeout: 40000, // 40 seconds
-  globalTimeout: 60000, // 60 seconds
+  // timeout: 40000, // 40 seconds
+  // globalTimeout: 60000, // 60 seconds
   expect: {
     timeout: 2000, // 2 seconds,
     toMatchSnapshot: { maxDiffPixels: 50 }
@@ -78,4 +78,10 @@ export default defineConfig<TestOptions>({
       }
     }
   ],
+
+  webServer:{
+    command: 'npm run start',
+    timeout: 120000, // 2 minutes
+    url: 'http://localhost:4200/'
+  }
 });
