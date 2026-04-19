@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
     await page.goto('/')
 })
 
-test.describe('From Layouts page', async () => {
+test.describe('From Layouts page @block', async () => {
     test.describe.configure({retries: 2}) // esta configuración se aplicará a todos los tests dentro de este describe, en este caso a los tests de radio buttons y input fields
     test.beforeEach(async ({ page }) => {
         await page.getByText('Forms').click()
