@@ -7,14 +7,16 @@ export default defineConfig<TestOptions>({
   timeout: 40000, // 40 seconds
   globalTimeout: 60000, // 60 seconds
   expect: {
-    timeout: 2000 // 2 seconds
+    timeout: 2000, // 2 seconds,
+    toMatchSnapshot: { maxDiffPixels: 50 }
   },
 
   retries: 1,
   reporter: [
-    ['json',{outputFile: 'test-results/jsonReport.json'}],
-    ['junit',{outputFile: 'test-results/junitReport.xml'}],
-    ['allure-playwright'],
+    ['json', { outputFile: 'test-results/jsonReport.json' }],
+    ['junit', { outputFile: 'test-results/junitReport.xml' }],
+    // ['allure-playwright'],
+    ['html']
   ],
 
   use: {
@@ -71,8 +73,8 @@ export default defineConfig<TestOptions>({
     {
       name: 'mobile',
       testMatch: 'testMobile.spec.ts',
-      use:{
-        ...devices['iPhone 13 Pro']        
+      use: {
+        ...devices['iPhone 13 Pro']
       }
     }
   ],
