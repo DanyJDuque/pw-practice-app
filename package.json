@@ -9,9 +9,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "PageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=chromium",
-    "PageObjects-webkit": "npx playwright test usePageObjects.spec.ts --project=webkit",
-    "PageObjects-all": "npm run PageObjects-chrome && npm run PageObjects-webkit",
+    "pageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=chromium",
+    "pageObjects-webkit": "npx playwright test usePageObjects.spec.ts --project=webkit",
+    "pageObjects-all": "npm run PageObjects-chrome && npm run PageObjects-webkit",
     "autoWait-dev": "URL=http://uitestingplayground.com/ajax npx playwright test autoWaiting.spec.ts --project=chromium"
   },
   "dependencies": {
