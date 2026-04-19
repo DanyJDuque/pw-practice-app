@@ -9,8 +9,14 @@ export default defineConfig<TestOptions>({
   expect: {
     timeout: 2000 // 2 seconds
   },
+
   retries: 1,
-  reporter: 'html',
+  reporter: [
+    ['json',{outputFile: 'test-results/jsonReport.json'}],
+    ['junit',{outputFile: 'test-results/junitReport.xml'}],
+    ['allure-playwright'],
+  ],
+
   use: {
     globalsQaURL: 'https://www.globalsqa.com/demo-site/draganddrop/',
     baseURL: process.env.DEV === '1' ? 'http://localhost:4201/'

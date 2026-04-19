@@ -1,0 +1,1 @@
+[{"uid":"c737a90263372ea8","name":"parametrized methods @smoke","time":{"start":1776623665417,"stop":1776623670200,"duration":4783},"status":"passed","severity":"normal"},{"uid":"53dd85b41143aa77","name":"navigate to form page @smoke @regression","time":{"start":1776623655930,"stop":1776623664433,"duration":8503},"status":"passed","severity":"normal"}]
